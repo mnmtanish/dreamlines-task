@@ -1,0 +1,31 @@
+{
+  "name": "dreamlines-task",
+  "version": "1.0.0",
+  "description": "Solution for dreamlines task by Thanish",
+  "scripts": {
+    "demo-load": "sh example-data/load-data.sh",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://mnmtanish@bitbucket.org/mnmtanish/dreamlines-task.git"
+  },
+  "keywords": [
+    "dreamlines"
+  ],
+  "author": "Muhammed Thanish <mnmtanish@gmail.com> (http://thanish.me/)",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/mnmtanish/dreamlines-task#readme",
+  "devDependencies": {
+    "jest": "^17.0.3"
+  },
+  "dependencies": {
+    "chrono-node": "^1.2.5",
+    "csv-parser": "^1.11.0",
+    "envalid": "^2.4.1",
+    "mongodb": "^2.2.11",
+    "stream-to-mongo-db": "^1.0.17",
+    "through2": "^2.0.1",
+    "uuid": "^3.0.0"
+  }
+}
