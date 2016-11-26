@@ -43,7 +43,7 @@ exports.Writer = class {
       const pipeline = [
         {$match: {_batch_id: this._batchId}},
         {$group: {
-          _id: '$airport_name',
+          _id: { airport_name: '$airport_name', _batch_id: '$_batch_id' },
           reviews_count: {$sum: 1},
           avg_overall_rating: {$avg: '$overall_rating'},
           recommended_count: {$sum:
