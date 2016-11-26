@@ -3,6 +3,7 @@
 export MONGO_URL="mongodb://localhost:27017/airport"
 export COLL_REVIEWS="reviews"
 export COLL_BATCHES="batches"
-export INPUT_FILE="./example-data/airport.csv"
+export COLL_STATS="review_stats"
+export DATA_SOURCE="../../example-data/airport.csv"
 
-node loader/index.js
+node index.js
