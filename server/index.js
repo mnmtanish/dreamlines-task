@@ -1,3 +1,4 @@
+const compression = require('compression')
 const envalid = require('envalid');
 const express = require('express');
 const uuid = require('uuid');
@@ -13,6 +14,8 @@ const env = envalid.cleanEnv(process.env, {
 });
 
 const server = express();
+server.use(compression());
+
 const datastore = createDatastore({
   mongoUrl: env.MONGO_URL,
   collReviews: env.COLL_REVIEWS,
