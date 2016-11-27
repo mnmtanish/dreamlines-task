@@ -1,18 +1,15 @@
 {
-  "name": "dreamlines-task",
+  "name": "dreamlines-task-server",
   "version": "1.0.0",
-  "description": "Solution for dreamlines task by Thanish",
+  "description": "Serves airport review data over an HTTP API",
+  "main": "index.js",
   "scripts": {
-    "demo-load": "sh example-data/load-data.sh",
     "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "git+https://mnmtanish@bitbucket.org/mnmtanish/dreamlines-task.git"
   },
-  "keywords": [
-    "dreamlines"
-  ],
   "author": "Muhammed Thanish <mnmtanish@gmail.com> (http://thanish.me/)",
   "license": "MIT",
   "homepage": "https://bitbucket.org/mnmtanish/dreamlines-task#readme",
@@ -21,15 +18,11 @@
   },
   "dependencies": {
     "JSONStream": "^1.2.1",
-    "chrono-node": "^1.2.5",
-    "csv-parser": "^1.11.0",
     "envalid": "^2.4.1",
     "express": "^4.14.0",
     "lodash.once": "^4.1.1",
     "lodash.throttle": "^4.1.1",
     "mongodb": "^2.2.11",
-    "request": "^2.79.0",
-    "stream-to-mongo-db": "^1.0.17",
     "through2": "^2.0.1",
     "uuid": "^3.0.0"
   }
