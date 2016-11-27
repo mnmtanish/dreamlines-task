@@ -28,6 +28,7 @@
     "lodash.once": "^4.1.1",
     "lodash.throttle": "^4.1.1",
     "mongodb": "^2.2.11",
+    "request": "^2.79.0",
     "stream-to-mongo-db": "^1.0.17",
     "through2": "^2.0.1",
     "uuid": "^3.0.0"
