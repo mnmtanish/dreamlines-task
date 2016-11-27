@@ -49,7 +49,16 @@ server.get('/api/:airport/stats', function (req, res) {
 });
 
 server.get('/api/:airport/reviews', function (req, res) {
-  datastore.getAirportReviews(req.params.airport)
+  const options = {};
+  if (req.query.min_overall !== undefined) {
+    const minOverall = parseFloat(req.query.min_overall);
+    if (isNaN(minOverall)) {
+      res.status(400).send('The "min_overall" query param must be a number');
+      return;
+    }
+    options.minOverall = minOverall;
+  }
+  datastore.getAirportReviews(req.params.airport, options)
     .then(stream => serveStream(res, stream))
     .catch(err => serveError(res, err, 'Error serving airport reviews'))
 });

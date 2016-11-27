@@ -17,6 +17,7 @@ exports.Datastore = class {
   }
 
   getAllStats() {
+    const ds = this;
     const promises = [ this._getDatabase(), this._getBatchId() ];
     return Promise.all(promises).then(([ db, batchId ]) => {
       if (!batchId) {
@@ -27,6 +28,10 @@ exports.Datastore = class {
       return coll.find(filter)
         .sort({ reviews_count: -1 })
         .stream()
+        .pipe(throuhg2.obj(function (doc, enc, callback) {
+          this.push(ds._formatShortStats(doc));
+          callback();
+        }))
         .pipe(JSONStream.stringify());
     });
   }
@@ -40,11 +45,11 @@ exports.Datastore = class {
       const coll = db.collection(this._collStats);
       const filter = {'_id._batch_id': batchId, '_id.airport_name': airport};
       return coll.findOne(filter)
-        .then(doc => this._formatStats(doc));
+        .then(doc => this._formatLongStats(doc));
     });
   }
 
-  getAirportReviews(airport) {
+  getAirportReviews(airport, options) {
     const ds = this;
     const promises = [ this._getDatabase(), this._getBatchId() ];
     return Promise.all(promises).then(([ db, batchId ]) => {
@@ -53,6 +58,9 @@ exports.Datastore = class {
       }
       const coll = db.collection(this._collReviews);
       const filter = {'_batch_id': batchId, 'airport_name': airport};
+      if (options.minOverall) {
+        filter.overall_rating = {$gte: options.minOverall};
+      }
       return coll.find(filter)
         .sort({ date: -1 })
         .stream()
@@ -78,7 +86,17 @@ exports.Datastore = class {
     })
   }
 
-  _formatStats(doc) {
+  _formatShortStats(doc) {
+    if (!doc) {
+      return null;
+    }
+    return {
+      airport_name: doc._id.airport_name,
+      reviews_count: doc.reviews_count,
+    };
+  }
+
+  _formatLongStats(doc) {
     if (!doc) {
       return null;
     }
