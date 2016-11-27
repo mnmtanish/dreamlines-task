@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "JSONStream": "^1.2.1",
+    "compression": "^1.6.2",
     "envalid": "^2.4.1",
     "express": "^4.14.0",
     "lodash.once": "^4.1.1",
